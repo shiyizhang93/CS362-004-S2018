@@ -1294,7 +1294,7 @@ void adventurerCard(struct gameState *state, int currentPlayer, int *temphand) {
 void smithyCard(struct gameState *state, int currentPlayer, int handPos) {
     //+3 Cards
     int i;
-    for (i = 0; i <= 3; i++)
+    for (i = 0; i < 4; i++)
     {
 	drawCard(currentPlayer, state);
     }
@@ -1306,7 +1306,7 @@ void smithyCard(struct gameState *state, int currentPlayer, int handPos) {
 void council_roomCard(struct gameState *state, int currentPlayer, int handPos) {
     //+4 Cards
     int i;
-    for (i = 1; i < 4; i++)
+    for (i = 0; i < 4 ; i++)
     {
 	drawCard(currentPlayer, state);
     }
@@ -1332,7 +1332,7 @@ void villageCard(struct gameState *state, int currentPlayer, int handPos) {
     drawCard(currentPlayer, state);
 
     //+2 Actions
-    state->numActions = state->numActions + 2;
+    state->numActions = state->numActions + 3;
 
     //discard played card from hand
     discardCard(handPos, currentPlayer, state, 0);
@@ -1343,7 +1343,7 @@ void great_hallCard(struct gameState *state, int currentPlayer, int handPos) {
     drawCard(currentPlayer, state);
 
     //+1 Actions
-    state->numActions++;
+    state->numActions = state->numActions + 1;
 
     //discard card from hand
     discardCard(handPos, currentPlayer, state, 0);
