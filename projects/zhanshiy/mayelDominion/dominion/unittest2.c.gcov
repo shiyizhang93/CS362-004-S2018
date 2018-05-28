@@ -1,0 +1,50 @@
+        -:    0:Source:unittest2.c
+        -:    0:Graph:unittest2.gcno
+        -:    0:Data:unittest2.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://unitest2.c
+        -:    2://Created by Shiyi Zhang for Assignment 3
+        -:    3://It is to test the function isGameOver 
+        -:    4:#include "dominion.h"
+        -:    5:#include "dominion_helpers.h"
+        -:    6:#include <stdio.h>
+        -:    7:#include "rngs.h"
+        -:    8:
+        1:    9:int main (int argc, char** argv) {
+        -:   10:    struct gameState testState;
+        -:   11:    int i;
+        1:   12:    int pilesNumber = 25;
+        -:   13:    int testVal;
+        -:   14:    int expectedVal;
+        -:   15:
+        -:   16:    //initiliaze each of the supply pile for only one card 
+        -:   17:    //To easy test
+       26:   18:    for (i = 0; i < pilesNumber; i++){
+       25:   19:	    testState.supplyCount[i] = 1;
+        -:   20:     }
+        1:   21:    printf("Test suite for function isGameOver\n");
+        -:   22:    
+        1:   23:    printf("Test case 1: ");
+        1:   24:    expectedVal = 0;
+        1:   25:    testVal = isGameOver(&testState);
+        1:   26:    printf("%s\n", (testVal == expectedVal) ? "PASS" : "FAIL");
+        1:   27:    printf(" The function should return 0, because it still has a province card and no empty supply piles\n");
+        -:   28:
+        1:   29:    printf("Test case 2: ");
+        1:   30:    expectedVal = 1;
+        1:   31:    testState.supplyCount[province] = 0;
+        1:   32:    testVal = isGameOver(&testState);
+        1:   33:    printf("%s\n", (testVal == expectedVal) ? "PASS" : "FAIL");
+        1:   34:    printf(" The function should return 1, because it has no province card in supply piles\n");
+        -:   35:
+        1:   36:    printf("Test case 3: ");
+        1:   37:    expectedVal = 1;
+        1:   38:    testState.supplyCount[province] = 1;
+        1:   39:    testState.supplyCount[smithy] = testState.supplyCount[council_room] = testState.supplyCount[adventurer] = 0;
+        1:   40:    testVal = isGameOver(&testState);
+        1:   41:    printf("%s\n", (testVal == expectedVal) ? "PASS" : "FAIL");
+        1:   42:    printf(" The function should return 1, because three of the supply piles (expcept province pile) become 0\n");
+        -:   43:
+        1:   44:    return 0;
+        -:   45:}

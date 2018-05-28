@@ -1,0 +1,97 @@
+        -:    0:Source:cardtest4.c
+        -:    0:Graph:cardtest4.gcno
+        -:    0:Data:cardtest4.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://cardtest4.c
+        -:    2://Created by Shiyi Zhang for Assignment 3
+        -:    3://It is to test the village card effect
+        -:    4:
+        -:    5:#include "dominion.h"
+        -:    6:#include "dominion_helpers.h"
+        -:    7:#include <stdio.h>
+        -:    8:#include "rngs.h"
+        -:    9:
+       14:   10:void showTestResult(int expectedVal, int testVal, char *temp) {
+       14:   11:    char *testName = temp;
+       14:   12:    if (expectedVal == testVal) {
+       14:   13:	    printf("PASS: %s", testName);
+        -:   14:    } 
+        -:   15:    else {
+    #####:   16:	    printf("FAIL: %s - expected value is %d, but the actual value is %d", testName, expectedVal, testVal);
+        -:   17:    }
+       14:   18:    printf("\n");
+       14:   19:}
+        -:   20:
+        1:   21:int main (int argc, char** argv) {
+        -:   22:    struct gameState startState; 
+        -:   23:    struct gameState endState;
+        1:   24:    int numPlayers = 2;
+        1:   25:    int handFlag = 0;
+        1:   26:    int choice1 = -1;
+        1:   27:    int choice2 = -1;
+        1:   28:    int choice3 = -1;
+        1:   29:    int bonus = 0;
+        1:   30:    int seed = 10;
+        1:   31:    int k[10] = {adventurer, council_room, gardens, mine, remodel, smithy, baron, great_hall, steward, village};
+        -:   32:    int i;
+        -:   33:    int expectedVal;
+        -:   34:    int testVal;
+        1:   35:    int tempFlag = 0;
+        1:   36:    int numNewCardHand = 1;
+        1:   37:    int numCardPlay = 1;
+        -:   38:    int playerNum;
+        1:   39:    int numAction = 2;
+        -:   40:
+        1:   41:    initializeGame(numPlayers, k, seed, &startState);
+        1:   42:    endState = startState;
+        1:   43:    printf("Test suite for card village effect\n");
+        3:   44:    for (playerNum = 0; playerNum < numPlayers; playerNum++) {
+        2:   45:	    cardEffect(village, choice1, choice2, choice3, &endState, handFlag, &bonus);
+        2:   46:      printf("Test result for player %d\n", playerNum+1);
+        2:   47:    	expectedVal = startState.handCount[playerNum] + numNewCardHand - numCardPlay;
+        2:   48:    	testVal = endState.handCount[playerNum];
+        2:   49:    	showTestResult(expectedVal, testVal, "Player hand number");
+        -:   50:     
+        2:   51:      expectedVal = startState.deckCount[playerNum] - numNewCardHand;
+        2:   52:	    testVal = endState.deckCount[playerNum];
+        2:   53:	    showTestResult(expectedVal, testVal, "Player deck number"); 
+        -:   54:    
+        2:   55:    	expectedVal = startState.playedCardCount + numCardPlay;
+        2:   56:    	testVal = endState.playedCardCount;
+        2:   57:    	showTestResult(expectedVal, testVal, "Player played card number");
+        -:   58:     
+        2:   59:      expectedVal = startState.numActions + numAction;
+        2:   60:	    testVal = endState.numActions;
+        2:   61:	    showTestResult(expectedVal, testVal, "Player actions number");
+        -:   62:    
+        2:   63:    	expectedVal = playerNum == 1 ? 
+        2:   64:    	    startState.deckCount[1-playerNum] - numNewCardHand : startState.deckCount[1-playerNum];
+        2:   65:    	testVal = endState.deckCount[1-playerNum];
+        2:   66:    	showTestResult(expectedVal, testVal, "The other player deck number");
+        -:   67:    
+        2:   68:    	expectedVal = startState.coins;
+        2:   69:    	testVal = endState.coins;
+        2:   70:    	showTestResult(expectedVal, testVal, "Coin number");
+        -:   71:
+        2:   72:    	expectedVal = numNewCardHand + startState.handCount[playerNum] - numCardPlay;
+        2:   73:    	endTurn(&endState);
+        2:   74:    	endTurn(&startState);
+        2:   75:    	testVal = endState.discardCount[playerNum];
+        2:   76:    	showTestResult(expectedVal, testVal, "Player discard number");
+        -:   77:
+       56:   78:    	for (i = 0; i < treasure_map + 1; i++) {
+       54:   79:    	    if (startState.supplyCount[i] != endState.supplyCount[i]) {
+    #####:   80:    		    tempFlag = 1;
+    #####:   81:    		  break;
+        -:   82:    	    }
+        -:   83:    	}
+        2:   84:    	if (!tempFlag) {
+        2:   85:    	    printf("PASS: The number of supply matches\n");
+        -:   86:    	} 
+        -:   87:      else {
+    #####:   88:    	    printf("FAIL: The number of supply does not match %d\n", i);
+        -:   89:    	}
+        -:   90:    }
+        1:   91:    return 0;
+        -:   92:}

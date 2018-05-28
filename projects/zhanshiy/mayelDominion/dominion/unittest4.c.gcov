@@ -1,0 +1,215 @@
+        -:    0:Source:unittest4.c
+        -:    0:Graph:unittest4.gcno
+        -:    0:Data:unittest4.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://unitest4.c
+        -:    2://Created by Shiyi Zhang for Assignment 3
+        -:    3://It is to test the function scoreFor 
+        -:    4:#include "dominion.h"
+        -:    5:#include "dominion_helpers.h"
+        -:    6:#include <stdio.h>
+        -:    7:#include <math.h>
+        -:    8:#include "rngs.h"
+        -:    9:
+        -:   10:struct scoreCardStr {
+        -:   11:    int curse;
+        -:   12:    int estate;
+        -:   13:    int greatHall;
+        -:   14:    int duchy;
+        -:   15:    int province;
+        -:   16:    int gardens;
+        -:   17:};
+        -:   18:
+        1:   19:struct gameState testGame(int randomSeed) {
+        -:   20:    struct gameState testState;
+        1:   21:    int k[10] = {adventurer, council_room, gardens, mine, remodel, smithy, baron, great_hall, steward, tribute};
+        -:   22:
+        1:   23:    initializeGame(2, k, randomSeed, &testState);
+        -:   24:
+        1:   25:    int money = 0;
+        1:   26:    int i = 0;
+        1:   27:    int smithyFlag = -1;
+        1:   28:    int adventurerFlag = -1;
+        1:   29:    int smithyCount = 0;
+        1:   30:    int adventurerCount = 0;
+        -:   31:
+       41:   32:    while (!isGameOver(&testState)){
+       39:   33:	    money = 0;
+       39:   34:	    smithyFlag = -1;
+       39:   35:	    adventurerFlag = -1;
+      234:   36:	    for (i = 0; i < numHandCards(&testState); i++) {
+      195:   37:	      if (handCard(i, &testState) == copper)
+       88:   38:		      money++;
+      107:   39:	      else if (handCard(i, &testState) == silver)
+       30:   40:		      money += 2;
+       77:   41:	      else if (handCard(i, &testState) == gold)
+       22:   42:		      money += 3;
+       55:   43:	      else if (handCard(i, &testState) == smithy)
+        2:   44:		      smithyFlag = i;
+       53:   45:	      else if (handCard(i, &testState) == adventurer)
+        4:   46:		      adventurerFlag = i;
+        -:   47:	    }
+        -:   48:
+       39:   49:  	  if (whoseTurn(&testState) == 0) {
+       20:   50:  	    if (smithyFlag != -1) {
+        2:   51:  		    playCard(smithyFlag, -1, -1, -1, &testState);
+        2:   52:  		    money = 0;
+        2:   53:  		    i=0;
+       20:   54:  		    while(i<numHandCards(&testState)){
+       16:   55:  		      if (handCard(i, &testState) == copper){
+       10:   56:  			      playCard(i, -1, -1, -1, &testState);
+       10:   57:  			      money++;
+        -:   58:  		      }
+        6:   59:  		      else if (handCard(i, &testState) == silver){
+        2:   60:  			      playCard(i, -1, -1, -1, &testState);
+        2:   61:  			      money = money + 2;
+        -:   62:  		      }
+        4:   63:  		      else if (handCard(i, &testState) == gold){
+        1:   64:  			      playCard(i, -1, -1, -1, &testState);
+        1:   65:  			      money = money + 3;
+        -:   66:  		      }
+       16:   67:  		    i++;
+        -:   68:  		  }
+        -:   69:      }
+       20:   70:  	    if (money >= 8) {
+        4:   71:  		    buyCard(province, &testState);
+        -:   72:  	    }
+       16:   73:  	    else if (money >= 6) {
+       10:   74:  		    buyCard(gold, &testState);
+        -:   75:  	    }
+        6:   76:  	    else if ((money >= 4) && (smithyCount < 2)) {
+        2:   77:  		    buyCard(smithy, &testState);
+        2:   78:  	    	smithyCount++;
+        -:   79:  	    }
+        4:   80:  	    else if (money >= 3) {
+        3:   81:  		    buyCard(silver, &testState);
+        -:   82:  	    }
+       20:   83:  	    endTurn(&testState);
+        -:   84:    }
+        -:   85:	  else {
+       19:   86:	    if (adventurerFlag != -1) {
+        4:   87:		    playCard(adventurerFlag, -1, -1, -1, &testState);
+        4:   88:		    money = 0;
+        4:   89:		    i=0;
+       36:   90:		    while(i<numHandCards(&testState)){
+       28:   91:		      if (handCard(i, &testState) == copper){
+       10:   92:			      playCard(i, -1, -1, -1, &testState);
+       10:   93:			      money++;
+        -:   94:		      }
+       18:   95:		      else if (handCard(i, &testState) == silver){
+        9:   96:            playCard(i, -1, -1, -1, &testState);
+        9:   97:			      money = money + 2;
+        -:   98:		      }
+        9:   99:		      else if (handCard(i, &testState) == gold){
+        1:  100:			      playCard(i, -1, -1, -1, &testState);
+        1:  101:			      money = money + 3;
+        -:  102:		      }
+       28:  103:	      i++;
+        -:  104:		    }
+        -:  105:     }
+       19:  106:     if (money >= 8) {
+        4:  107:		    buyCard(province, &testState);
+        -:  108:     }
+       15:  109:     else if ((money >= 6) && (adventurerCount < 2)) {
+        2:  110:		    buyCard(adventurer, &testState);
+        2:  111:		    adventurerCount++;
+        -:  112:     }
+       13:  113:     else if (money >= 6){
+        5:  114:		    buyCard(gold, &testState);
+        -:  115:     }
+        8:  116:     else if (money >= 3){
+        8:  117:		    buyCard(silver, &testState);
+        -:  118:     }
+       19:  119:     endTurn(&testState);
+        -:  120:    }
+        -:  121:   }
+        1:  122:    return testState;
+        -:  123:}
+        -:  124:
+       12:  125:void cardCounts(int player, int cardNum, int cards[], struct scoreCardStr *deckPile) {
+        -:  126:    int i;
+      124:  127:    for (i = 0; i < cardNum; i++) {
+      112:  128:	    switch (cards[i]) {
+        -:  129:        case curse:
+        2:  130:  		    deckPile->curse++;
+        2:  131:  		  break;
+        -:  132:  	    case estate:
+       25:  133:  		    deckPile->estate++;
+       25:  134:  		  break;
+        -:  135:  	    case great_hall:
+        4:  136:  		    deckPile->greatHall++;
+        4:  137:  		  break;
+        -:  138:  	    case duchy:
+        5:  139:  	    	deckPile->duchy++;
+        5:  140:  		  break;
+        -:  141:  	    case province:
+       12:  142:    		  deckPile->province++;
+       12:  143:    		break;
+        -:  144:  	    case gardens:
+    #####:  145:  		    deckPile->gardens++;
+    #####:  146:  		  break;
+        -:  147:	}
+        -:  148:    }
+       12:  149:}
+        -:  150:
+        4:  151:int calScore(int player, struct gameState *gameState) {
+        4:  152:    int score = 0;
+        4:  153:    struct scoreCardStr deckPile = {0, 0, 0, 0, 0, 0};
+        -:  154:
+        4:  155:    cardCounts(player, gameState->handCount[player], gameState->hand[player], &deckPile);
+        4:  156:    cardCounts(player, gameState->discardCount[player], gameState->discard[player], &deckPile);
+        4:  157:    cardCounts(player, gameState->deckCount[player], gameState->deck[player], &deckPile);
+        4:  158:    int scoreCards = deckPile.curse + deckPile.estate + deckPile.greatHall + deckPile.duchy + deckPile.province + deckPile.gardens;
+        4:  159:    int gardenCounts = (int)floor((float)scoreCards / 10);
+        -:  160:
+        4:  161:    score = score - (deckPile.curse);
+        4:  162:    score = score + (deckPile.estate);
+        4:  163:    score = score + (deckPile.greatHall);
+        4:  164:    score = score + (deckPile.duchy * 3);
+        4:  165:    score = score + (deckPile.province * 6);
+        4:  166:    score = score + (deckPile.gardens * gardenCounts);
+        -:  167:    
+        4:  168:    return score;
+        -:  169:}
+        -:  170:
+        1:  171:int main (int argc, char** argv) {
+        -:  172:    struct gameState testResult;
+        -:  173:    int i;
+        1:  174:    int randomSeed = 2;
+        -:  175:    int expectedPlayer1, expectedPlayer2;
+        -:  176:    int testPlayer1, testPlayer2; 
+        -:  177:
+        1:  178:    testResult = testGame(randomSeed);
+        -:  179:
+        1:  180:    printf("Test suite for function scoreFor\n");
+        -:  181:
+        1:  182:    printf("Test Case 1: ");
+        1:  183:    expectedPlayer1 = calScore(0, &testResult);
+        1:  184:    expectedPlayer2 = calScore(1, &testResult);
+        1:  185:    testPlayer1 = scoreFor(0, &testResult);
+        1:  186:    testPlayer2 = scoreFor(1, &testResult);
+        1:  187:    printf("%s", (expectedPlayer1 == testPlayer1 && expectedPlayer2 == testPlayer2) ? "PASS" : "FAIL");
+        1:  188:    printf(" The score of expected player 1 is %d, but the actual score is %d.\n The score of expected player 2 is %d, but the actual score is %d\n", expectedPlayer1, testPlayer1, expectedPlayer2, testPlayer2);
+        -:  189:
+        1:  190:    for (i = 0; i < testResult.handCount[0]; i++)
+    #####:  191:	    testResult.hand[0][i] = province;
+       19:  192:    for (i = 0; i < testResult.discardCount[0]; i++)
+       18:  193:	    testResult.discard[0][i] = estate;
+       10:  194:    for (i = 0; i < testResult.deckCount[0]; i++)
+        9:  195:	    if (i % 2 == 0) 
+        5:  196:        testResult.deck[0][i] = duchy;
+        -:  197:    	else 
+        4:  198:        testResult.deck[0][i] = great_hall;
+        -:  199:
+        1:  200:    printf("Test case 2: ");
+        1:  201:    expectedPlayer1 = calScore(0, &testResult);
+        1:  202:    expectedPlayer2 = calScore(1, &testResult);
+        1:  203:    testPlayer1 = scoreFor(0, &testResult);
+        1:  204:    testPlayer2 = scoreFor(1, &testResult);
+        1:  205:    printf("%s", (expectedPlayer1 == testPlayer1 && expectedPlayer2 == testPlayer2) ? "PASS" : "FAIL");
+        1:  206:    printf(" The score of expected player 1 is %d, but the actual score is %d.\n The score of expected player 2 is %d, but the actual score is %d\n",
+        -:  207:	    expectedPlayer1, testPlayer1, expectedPlayer2, testPlayer2);
+        -:  208:
+        1:  209:    return 0;
+        -:  210:}

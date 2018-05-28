@@ -1,0 +1,46 @@
+        -:    0:Source:unittest1.c
+        -:    0:Graph:unittest1.gcno
+        -:    0:Data:unittest1.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://unitest1.c
+        -:    2://Created by Shiyi Zhang for Assignment 3
+        -:    3://It is to test the function updataCoins
+        -:    4:#include "dominion.h"
+        -:    5:#include "dominion_helpers.h"
+        -:    6:#include <stdio.h>
+        -:    7:#include "rngs.h"
+        -:    8:
+        1:    9:int main(int argc, char** argv){
+        -:   10:    struct gameState testState;
+        1:   11:    int numPlayers = 2;
+        1:   12:    int playersNum = 0;
+        1:   13:    int selectSeed = 10;
+        1:   14:    int k[] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,
+        -:   15:	sea_hag, tribute, smithy};
+        1:   16:    int bonus = 0;
+        -:   17:    int testVal;
+        -:   18:    int expectedVal;
+        -:   19:
+        -:   20:    //initialze the game
+        1:   21:    initializeGame(numPlayers, k, selectSeed, &testState);
+        1:   22:    printf("Test suite for function updateCoins\n");
+        1:   23:    printf("Test case 1: ");
+        1:   24:    expectedVal = 4;
+        1:   25:    updateCoins(playersNum, &testState, bonus);
+        1:   26:    testVal = testState.coins;
+        1:   27:    printf("%s\n", (testVal == expectedVal) ? "PASS" : "FAIL");
+        1:   28:    printf("There should be 4 coins for player in first hand\n");
+        -:   29:    
+        -:   30:    //Player now have 1 gold, 1 silver, 2 copper and 1 bonus
+        1:   31:    testState.hand[playersNum][0] = gold;
+        1:   32:    testState.hand[playersNum][1] = silver;
+        1:   33:    bonus = 1;
+        1:   34:    printf("Test case 2: ");
+        1:   35:    expectedVal = 8;
+        1:   36:    updateCoins(playersNum, &testState, bonus);
+        1:   37:    testVal = testState.coins;
+        1:   38:    printf("%s\n", (testVal == expectedVal) ? "PASS" : "FAIL");
+        1:   39:    printf(" There should be 8 coins for player in second hand\n");
+        1:   40:    return 0;
+        -:   41:}

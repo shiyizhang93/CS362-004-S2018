@@ -1,0 +1,92 @@
+        -:    0:Source:cardtest2.c
+        -:    0:Graph:cardtest2.gcno
+        -:    0:Data:cardtest2.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://cardtest2.c
+        -:    2://Created by Shiyi Zhang for Assignment 3
+        -:    3://It is to test the smithy card effect
+        -:    4:
+        -:    5:#include "dominion.h"
+        -:    6:#include "dominion_helpers.h"
+        -:    7:#include <stdio.h>
+        -:    8:#include "rngs.h"
+        -:    9:
+       12:   10:void showTestResult(int expectedVal, int testVal, char *temp) {
+       12:   11:    char *testName = temp;
+       12:   12:    if (expectedVal == testVal) {
+        5:   13:	    printf("PASS: %s", testName);
+        -:   14:    } 
+        -:   15:    else {
+        7:   16:	    printf("FAIL: %s - expected value is %d, but the actual value is %d", testName, expectedVal, testVal);
+        -:   17:    }
+       12:   18:    printf("\n");
+       12:   19:}
+        -:   20:
+        1:   21:int main (int argc, char** argv) {
+        -:   22:    struct gameState startState; 
+        -:   23:    struct gameState endState;
+        1:   24:    int numPlayers = 2;
+        1:   25:    int handFlag = 0;
+        1:   26:    int choice1 = -1;
+        1:   27:    int choice2 = -1;
+        1:   28:    int choice3 = -1;
+        1:   29:    int bonus = 0;
+        1:   30:    int seed = 10;
+        1:   31:    int k[10] = {adventurer, council_room, gardens, mine, remodel, smithy, baron, great_hall, steward, village};
+        -:   32:    int i;
+        -:   33:    int expectedVal;
+        -:   34:    int testVal;
+        1:   35:    int tempFlag = 0;
+        1:   36:    int numNewCardHand = 3;
+        1:   37:    int numCardPlay = 1;
+        -:   38:    int playerNum;
+        -:   39:
+        1:   40:    initializeGame(numPlayers, k, seed, &startState);
+        1:   41:    endState = startState;
+        1:   42:    printf("Test suite for card smithy effect\n");
+        3:   43:    for (playerNum = 0; playerNum < numPlayers; playerNum++) {
+        2:   44:	    cardEffect(smithy, choice1, choice2, choice3, &endState, handFlag, &bonus);
+        2:   45:      printf("Test result for player %d\n", playerNum+1);
+        2:   46:    	expectedVal = startState.handCount[playerNum] + numNewCardHand - numCardPlay;
+        2:   47:    	testVal = endState.handCount[playerNum];
+        2:   48:    	showTestResult(expectedVal, testVal, "Player hand number");
+        -:   49:     
+        2:   50:      expectedVal = startState.deckCount[playerNum] - numNewCardHand;
+        2:   51:	    testVal = endState.deckCount[playerNum];
+        2:   52:	    showTestResult(expectedVal, testVal, "Player deck number"); 
+        -:   53:    
+        2:   54:    	expectedVal = startState.playedCardCount + numCardPlay;
+        2:   55:    	testVal = endState.playedCardCount;
+        2:   56:    	showTestResult(expectedVal, testVal, "Player played card number");
+        -:   57:    
+        2:   58:    	expectedVal = playerNum == 1 ? 
+        2:   59:    	    startState.deckCount[1-playerNum] - numNewCardHand : startState.deckCount[1-playerNum];
+        2:   60:    	testVal = endState.deckCount[1-playerNum];
+        2:   61:    	showTestResult(expectedVal, testVal, "The other player deck number");
+        -:   62:    
+        2:   63:    	expectedVal = startState.coins;
+        2:   64:    	testVal = endState.coins;
+        2:   65:    	showTestResult(expectedVal, testVal, "Coin number");
+        -:   66:
+        2:   67:    	expectedVal = numNewCardHand + startState.handCount[playerNum] - numCardPlay;
+        2:   68:    	endTurn(&endState);
+        2:   69:    	endTurn(&startState);
+        2:   70:    	testVal = endState.discardCount[playerNum];
+        2:   71:    	showTestResult(expectedVal, testVal, "Player discard number");
+        -:   72:
+       56:   73:    	for (i = 0; i < treasure_map + 1; i++) {
+       54:   74:    	    if (startState.supplyCount[i] != endState.supplyCount[i]) {
+    #####:   75:    		    tempFlag = 1;
+    #####:   76:    		  break;
+        -:   77:    	    }
+        -:   78:    	}
+        2:   79:    	if (!tempFlag) {
+        2:   80:    	    printf("PASS: The number of supply matches\n");
+        -:   81:    	} 
+        -:   82:      else {
+    #####:   83:    	    printf("FAIL: The number of supply does not match %d\n", i);
+        -:   84:    	}
+        -:   85:    }
+        1:   86:    return 0;
+        -:   87:}

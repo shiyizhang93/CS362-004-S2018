@@ -1,0 +1,251 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+A256	./rngs.c	43;"	d	file:
+ACTION_PHASE	./interface.h	45;"	d
+ADVENTURER_COST	./interface.h	61;"	d
+AMBASSADOR_COST	./interface.h	78;"	d
+BARON_COST	./interface.h	71;"	d
+BUY_PHASE	./interface.h	46;"	d
+CARD	./dominion.h	/^enum CARD$/;"	g
+CHECK	./rngs.c	41;"	d	file:
+CLEANUP_PHASE	./interface.h	47;"	d
+COMPARE	./interface.h	32;"	d
+COPPER_COST	./interface.h	54;"	d
+COPPER_VALUE	./interface.h	49;"	d
+COUNCIL_ROOM_COST	./interface.h	62;"	d
+CURSE_COST	./interface.h	60;"	d
+CUTPURSE_COST	./interface.h	79;"	d
+DEBUG	./badTestDrawCard.c	8;"	d	file:
+DEBUG	./betterTestDrawCard.c	8;"	d	file:
+DEBUG	./dominion.h	11;"	d
+DEBUG	./supplyTest.c	8;"	d	file:
+DEBUG	./testBuyCard.c	8;"	d	file:
+DEBUG	./testDrawCard.c	8;"	d	file:
+DEFAULT	./rngs.c	44;"	d	file:
+DUCHY_COST	./interface.h	58;"	d
+EMBARGO_COST	./interface.h	80;"	d
+ESTATE_COST	./interface.h	57;"	d
+FAILURE	./interface.h	38;"	d
+FALSE	./interface.h	35;"	d
+FEAST_COST	./interface.h	63;"	d
+GARDEN_COST	./interface.h	64;"	d
+GOLD_COST	./interface.h	56;"	d
+GOLD_VALUE	./interface.h	51;"	d
+GREAT_HALL_COST	./interface.h	72;"	d
+GetSeed	./rngs.c	/^   void GetSeed(long *x)$/;"	f
+HANDSIZE	./interface.h	30;"	d
+MATCH	./interface.h	40;"	d
+MAX_DECK	./dominion.h	7;"	d
+MAX_HAND	./dominion.h	6;"	d
+MAX_PLAYERS	./dominion.h	9;"	d
+MAX_STRING_LENGTH	./interface.h	33;"	d
+MINE_COST	./interface.h	65;"	d
+MINION_COST	./interface.h	73;"	d
+MODULUS	./rngs.c	39;"	d	file:
+MONEYLENDER_COST	./interface.h	66;"	d
+MULTIPLIER	./rngs.c	40;"	d	file:
+NOISY_TEST	./badTestDrawCard.c	9;"	d	file:
+NOISY_TEST	./betterTestDrawCard.c	9;"	d	file:
+NOISY_TEST	./supplyTest.c	9;"	d	file:
+NOISY_TEST	./testBuyCard.c	9;"	d	file:
+NOISY_TEST	./testDrawCard.c	9;"	d	file:
+NOT_WINNER	./interface.h	42;"	d
+NUM_COPPER	./interface.h	24;"	d
+NUM_C_CARDS_2	./interface.h	21;"	d
+NUM_C_CARDS_3	./interface.h	22;"	d
+NUM_C_CARDS_4	./interface.h	23;"	d
+NUM_GOLD	./interface.h	26;"	d
+NUM_K_CARDS	./interface.h	18;"	d
+NUM_SILVER	./interface.h	25;"	d
+NUM_TOTAL_K_CARDS	./interface.h	17;"	d
+NUM_V_CARDS_2	./interface.h	19;"	d
+NUM_V_CARDS_3or4	./interface.h	20;"	d
+ONETHOUSAND	./interface.h	85;"	d
+OUTPOST_COST	./interface.h	81;"	d
+PROVINCE_COST	./interface.h	59;"	d
+PlantSeeds	./rngs.c	/^   void PlantSeeds(long x)$/;"	f
+PutSeed	./rngs.c	/^   void PutSeed(long x)$/;"	f
+REMODEL_COST	./interface.h	67;"	d
+Random	./rngs.c	/^   double Random(void)$/;"	f
+SALVAGER_COST	./interface.h	82;"	d
+SEA_HAG_COST	./interface.h	83;"	d
+SHANTY_TOWN_COST	./interface.h	74;"	d
+SILVER_COST	./interface.h	55;"	d
+SILVER_VALUE	./interface.h	50;"	d
+SMITHY_COST	./interface.h	68;"	d
+START_COPPER	./interface.h	28;"	d
+START_ESTATE	./interface.h	29;"	d
+STEWARD_COST	./interface.h	75;"	d
+STREAMS	./rngs.c	42;"	d	file:
+SUCCESS	./interface.h	37;"	d
+SelectStream	./rngs.c	/^   void SelectStream(int index)$/;"	f
+TREASURE_MAP_COST	./interface.h	84;"	d
+TRIBUTE_COST	./interface.h	76;"	d
+TRUE	./interface.h	34;"	d
+TestRandom	./rngs.c	/^   void TestRandom(void)$/;"	f
+UNUSED	./interface.h	27;"	d
+VILLAGE_COST	./interface.h	69;"	d
+WINNER	./interface.h	41;"	d
+WISHING_WELL_COST	./interface.h	77;"	d
+WOODCUTTER_COST	./interface.h	70;"	d
+_DOMINION_H	./dominion.h	2;"	d
+_DOMINION_HELPERS_H	./dominion_helpers.h	2;"	d
+_INTERFACE_H	./interface.h	10;"	d
+_RNGS_	./rngs.h	10;"	d
+addCardToHand	./interface.c	/^int addCardToHand(int player, int card, struct gameState *game) {$/;"	f
+adventurer	./dominion.h	/^   adventurer,$/;"	e	enum:CARD
+adventurer_effect	./dominion.c	/^int adventurer_effect(struct gameState *state, int currentPlayer, int *temphand){$/;"	f
+ambassador	./dominion.h	/^   ambassador, \/* choice1 = hand#, choice2 = number to return to supply *\/$/;"	e	enum:CARD
+baron	./dominion.h	/^   baron, \/* choice1: boolean for discard of estate *\/$/;"	e	enum:CARD
+buyCard	./d.c	/^int buyCard(int supplyPos, struct gameState *state) {$/;"	f
+buyCard	./dominion.c	/^int buyCard(int supplyPos, struct gameState *state) {$/;"	f
+calScore	./unittest4.c	/^int calScore(int player, struct gameState *gameState) {$/;"	f
+cardCounts	./unittest4.c	/^void cardCounts(int player, int cardNum, int cards[], struct scoreCardStr *deckPile) {$/;"	f
+cardEffect	./d.c	/^int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)$/;"	f
+cardEffect	./dominion.c	/^int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)$/;"	f
+cardNumToName	./interface.c	/^void cardNumToName(int card, char *name){$/;"	f
+checkDrawCard	./badTestDrawCard.c	/^int checkDrawCard(int p, struct gameState *post) {$/;"	f
+checkDrawCard	./betterTestDrawCard.c	/^int checkDrawCard(int p, struct gameState *post) {$/;"	f
+checkDrawCard	./testBuyCard.c	/^int checkDrawCard(int p, struct gameState *post) {$/;"	f
+checkDrawCard	./testDrawCard.c	/^int checkDrawCard(int p, struct gameState *post) {$/;"	f
+coins	./dominion.h	/^  int coins; \/* Use as you see fit! *\/$/;"	m	struct:gameState
+compare	./d.c	/^int compare(const void* a, const void* b) {$/;"	f
+compare	./dominion.c	/^int compare(const void* a, const void* b) {$/;"	f
+copper	./dominion.h	/^   copper,$/;"	e	enum:CARD
+council_room	./dominion.h	/^   council_room,$/;"	e	enum:CARD
+countHandCoins	./interface.c	/^int countHandCoins(int player, struct gameState *game) {$/;"	f
+curse	./dominion.h	/^  {curse = 0,$/;"	e	enum:CARD
+curse	./unittest4.c	/^    int curse;$/;"	m	struct:scoreCardStr	file:
+cutpurse	./dominion.h	/^   cutpurse,$/;"	e	enum:CARD
+cutpurse_effect	./dominion.c	/^int cutpurse_effect(int handPos, struct gameState *state,   int currentPlayer ){$/;"	f
+deck	./dominion.h	/^  int deck[MAX_PLAYERS][MAX_DECK];$/;"	m	struct:gameState
+deckCount	./dominion.h	/^  int deckCount[MAX_PLAYERS];$/;"	m	struct:gameState
+discard	./dominion.h	/^  int discard[MAX_PLAYERS][MAX_DECK];$/;"	m	struct:gameState
+discardCard	./d.c	/^int discardCard(int handPos, int currentPlayer, struct gameState *state, int trashFlag)$/;"	f
+discardCard	./dominion.c	/^int discardCard(int handPos, int currentPlayer, struct gameState *state, int trashFlag)$/;"	f
+discardCount	./dominion.h	/^  int discardCount[MAX_PLAYERS];$/;"	m	struct:gameState
+drawCard	./d.c	/^int drawCard(int player, struct gameState *state)$/;"	f
+drawCard	./dominion.c	/^int drawCard(int player, struct gameState *state)$/;"	f
+duchy	./dominion.h	/^   duchy,$/;"	e	enum:CARD
+duchy	./unittest4.c	/^    int duchy;$/;"	m	struct:scoreCardStr	file:
+embargo	./dominion.h	/^   embargo, \/* choice1 = supply# *\/$/;"	e	enum:CARD
+embargoTokens	./dominion.h	/^  int embargoTokens[treasure_map+1];$/;"	m	struct:gameState
+embargo_effect	./dominion.c	/^int embargo_effect(int handPos, int choice1, struct gameState *state, int currentPlayer){$/;"	f
+endTurn	./d.c	/^int endTurn(struct gameState *state) {$/;"	f
+endTurn	./dominion.c	/^int endTurn(struct gameState *state) {$/;"	f
+estate	./dominion.h	/^   estate,$/;"	e	enum:CARD
+estate	./unittest4.c	/^    int estate;$/;"	m	struct:scoreCardStr	file:
+executeBotTurn	./interface.c	/^void executeBotTurn(int player, int *turnNum, struct gameState *game) {$/;"	f
+feast	./dominion.h	/^   feast, \/* choice1 is supply # of card gained) *\/$/;"	e	enum:CARD
+fullDeckCount	./d.c	/^int fullDeckCount(int player, int card, struct gameState *state) {$/;"	f
+fullDeckCount	./dominion.c	/^int fullDeckCount(int player, int card, struct gameState *state) {$/;"	f
+gainCard	./d.c	/^int gainCard(int supplyPos, struct gameState *state, int toFlag, int player)$/;"	f
+gainCard	./dominion.c	/^int gainCard(int supplyPos, struct gameState *state, int toFlag, int player)$/;"	f
+gameState	./dominion.h	/^struct gameState {$/;"	s
+gardens	./dominion.h	/^   gardens,$/;"	e	enum:CARD
+gardens	./unittest4.c	/^    int gardens;$/;"	m	struct:scoreCardStr	file:
+getCardCost	./interface.c	/^int getCardCost(int card) {$/;"	f
+getCost	./d.c	/^int getCost(int cardNumber)$/;"	f
+getCost	./dominion.c	/^int getCost(int cardNumber)$/;"	f
+getWinners	./d.c	/^int getWinners(int players[MAX_PLAYERS], struct gameState *state) {$/;"	f
+getWinners	./dominion.c	/^int getWinners(int players[MAX_PLAYERS], struct gameState *state) {$/;"	f
+gold	./dominion.h	/^   gold,$/;"	e	enum:CARD
+greatHall	./unittest4.c	/^    int greatHall;$/;"	m	struct:scoreCardStr	file:
+great_hall	./dominion.h	/^   great_hall,$/;"	e	enum:CARD
+hand	./dominion.h	/^  int hand[MAX_PLAYERS][MAX_HAND];$/;"	m	struct:gameState
+handCard	./d.c	/^int handCard(int handPos, struct gameState *state) {$/;"	f
+handCard	./dominion.c	/^int handCard(int handPos, struct gameState *state) {$/;"	f
+handCount	./dominion.h	/^  int handCount[MAX_PLAYERS];$/;"	m	struct:gameState
+initializeGame	./d.c	/^int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,$/;"	f
+initializeGame	./dominion.c	/^int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,$/;"	f
+initialized	./rngs.c	/^static int  initialized   = 0;          \/* test for stream initialization *\/$/;"	v	file:
+isGameOver	./d.c	/^int isGameOver(struct gameState *state) {$/;"	f
+isGameOver	./dominion.c	/^int isGameOver(struct gameState *state) {$/;"	f
+kingdomCards	./d.c	/^int* kingdomCards(int k1, int k2, int k3, int k4, int k5, int k6, int k7,$/;"	f
+kingdomCards	./dominion.c	/^int* kingdomCards(int k1, int k2, int k3, int k4, int k5, int k6, int k7,$/;"	f
+main	./badTestDrawCard.c	/^int main () {$/;"	f
+main	./betterTestDrawCard.c	/^int main () {$/;"	f
+main	./cardtest1.c	/^int main (int argc, char** argv) {$/;"	f
+main	./cardtest2.c	/^int main (int argc, char** argv) {$/;"	f
+main	./cardtest3.c	/^int main (int argc, char** argv) {$/;"	f
+main	./cardtest4.c	/^int main (int argc, char** argv) {$/;"	f
+main	./playdom.c	/^int main (int argc, char** argv) {$/;"	f
+main	./player.c	/^int main(int argc, char* argv[]) {$/;"	f
+main	./randomtestadventurer.c	/^int main() {$/;"	f
+main	./randomtestcard1.c	/^int main() {$/;"	f
+main	./randomtestcard2.c	/^int main() {$/;"	f
+main	./rt.c	/^int main(int argc, char** argv) {$/;"	f
+main	./supplyTest.c	/^int main () {$/;"	f
+main	./testBuyCard.c	/^int main () {$/;"	f
+main	./testDrawCard.c	/^int main () {$/;"	f
+main	./testInit.c	/^int main (int argc, char** argv) {$/;"	f
+main	./testShuffle.c	/^int main () {$/;"	f
+main	./unittest1.c	/^int main(int argc, char** argv){$/;"	f
+main	./unittest2.c	/^int main (int argc, char** argv) {$/;"	f
+main	./unittest3.c	/^int main (int argc, char** argv) {$/;"	f
+main	./unittest4.c	/^int main (int argc, char** argv) {$/;"	f
+main2	./player.c	/^int main2(int argc, char *argv[]) {$/;"	f
+mine	./dominion.h	/^   mine, \/* choice1 is hand# of money to trash, choice2 is supply# of$/;"	e	enum:CARD
+minion	./dominion.h	/^   minion, \/* choice1:  1 = +2 coin, 2 = redraw *\/$/;"	e	enum:CARD
+newGame	./d.c	/^struct gameState* newGame() {$/;"	f
+newGame	./dominion.c	/^struct gameState* newGame() {$/;"	f
+numActions	./dominion.h	/^  int numActions; \/* Starts at 1 each turn *\/$/;"	m	struct:gameState
+numBuys	./dominion.h	/^  int numBuys; \/* Starts at 1 each turn *\/$/;"	m	struct:gameState
+numHandCards	./d.c	/^int numHandCards(struct gameState *state) {$/;"	f
+numHandCards	./dominion.c	/^int numHandCards(struct gameState *state) {$/;"	f
+numPlayers	./dominion.h	/^  int numPlayers; \/\/number of players$/;"	m	struct:gameState
+outpost	./dominion.h	/^   outpost,$/;"	e	enum:CARD
+outpostPlayed	./dominion.h	/^  int outpostPlayed;$/;"	m	struct:gameState
+outpostTurn	./dominion.h	/^  int outpostTurn;$/;"	m	struct:gameState
+phase	./dominion.h	/^  int phase;$/;"	m	struct:gameState
+phaseNumToName	./interface.c	/^void phaseNumToName(int phase, char *name) {$/;"	f
+playCard	./d.c	/^int playCard(int handPos, int choice1, int choice2, int choice3, struct gameState *state) $/;"	f
+playCard	./dominion.c	/^int playCard(int handPos, int choice1, int choice2, int choice3, struct gameState *state) $/;"	f
+playedCardCount	./dominion.h	/^  int playedCardCount;$/;"	m	struct:gameState
+playedCards	./dominion.h	/^  int playedCards[MAX_DECK];$/;"	m	struct:gameState
+printDeck	./interface.c	/^void printDeck(int player, struct gameState *game) {$/;"	f
+printDiscard	./interface.c	/^void printDiscard(int player, struct gameState *game) {$/;"	f
+printHand	./interface.c	/^void printHand(int player, struct gameState *game) {$/;"	f
+printHelp	./interface.c	/^void printHelp(void) {$/;"	f
+printPlayed	./interface.c	/^void printPlayed(int player, struct gameState *game) {$/;"	f
+printScores	./interface.c	/^void printScores(struct gameState *game) {$/;"	f
+printState	./interface.c	/^void printState(struct gameState *game) {$/;"	f
+printSupply	./interface.c	/^void printSupply(struct gameState *game) {$/;"	f
+province	./dominion.h	/^   province,$/;"	e	enum:CARD
+province	./unittest4.c	/^    int province;$/;"	m	struct:scoreCardStr	file:
+remodel	./dominion.h	/^   remodel, \/* choice1 is hand# of card to remodel, choice2 is supply# *\/$/;"	e	enum:CARD
+salvager	./dominion.h	/^   salvager, \/* choice1 = hand# to trash *\/$/;"	e	enum:CARD
+scoreCardStr	./unittest4.c	/^struct scoreCardStr {$/;"	s	file:
+scoreFor	./d.c	/^int scoreFor (int player, struct gameState *state) {$/;"	f
+scoreFor	./dominion.c	/^int scoreFor (int player, struct gameState *state) {$/;"	f
+sea_hag	./dominion.h	/^   sea_hag,$/;"	e	enum:CARD
+seahag_effect	./dominion.c	/^int seahag_effect(struct gameState *state, int currentPlayer){$/;"	f
+seed	./rngs.c	/^static long seed[STREAMS] = {DEFAULT};  \/* current state of each stream   *\/$/;"	v	file:
+selectKingdomCards	./interface.c	/^void selectKingdomCards(int randomSeed, int kingCards[NUM_K_CARDS]) {$/;"	f
+showTestResult	./cardtest1.c	/^void showTestResult(int expectedVal, int testVal, char *temp) {$/;"	f
+showTestResult	./cardtest2.c	/^void showTestResult(int expectedVal, int testVal, char *temp) {$/;"	f
+showTestResult	./cardtest3.c	/^void showTestResult(int expectedVal, int testVal, char *temp) {$/;"	f
+showTestResult	./cardtest4.c	/^void showTestResult(int expectedVal, int testVal, char *temp) {$/;"	f
+shuffle	./d.c	/^int shuffle(int player, struct gameState *state) {$/;"	f
+shuffle	./dominion.c	/^int shuffle(int player, struct gameState *state) {$/;"	f
+silver	./dominion.h	/^   silver,$/;"	e	enum:CARD
+smithy	./dominion.h	/^   smithy,$/;"	e	enum:CARD
+smithy_effect	./dominion.c	/^int smithy_effect(int handPos, struct gameState *state, int currentPlayer) {$/;"	f
+steward	./dominion.h	/^   steward, \/* choice1: 1 = +2 card, 2 = +2 coin, 3 = trash 2 (choice2,3) *\/$/;"	e	enum:CARD
+stream	./rngs.c	/^static int  stream        = 0;          \/* stream index, 0 is the default *\/$/;"	v	file:
+supplyCount	./d.c	/^int supplyCount(int card, struct gameState *state) {$/;"	f
+supplyCount	./dominion.c	/^int supplyCount(int card, struct gameState *state) {$/;"	f
+supplyCount	./dominion.h	/^  int supplyCount[treasure_map+1];  \/\/this is the amount of a specific type of card given a specific number.$/;"	m	struct:gameState
+testGame	./unittest4.c	/^struct gameState testGame(int randomSeed) {$/;"	f
+treasure_map	./dominion.h	/^   treasure_map$/;"	e	enum:CARD
+tribute	./dominion.h	/^   tribute,$/;"	e	enum:CARD
+updateCoins	./d.c	/^int updateCoins(int player, struct gameState *state, int bonus)$/;"	f
+updateCoins	./dominion.c	/^int updateCoins(int player, struct gameState *state, int bonus)$/;"	f
+village	./dominion.h	/^   village,$/;"	e	enum:CARD
+whoseTurn	./d.c	/^int whoseTurn(struct gameState *state) {$/;"	f
+whoseTurn	./dominion.c	/^int whoseTurn(struct gameState *state) {$/;"	f
+whoseTurn	./dominion.h	/^  int whoseTurn;$/;"	m	struct:gameState

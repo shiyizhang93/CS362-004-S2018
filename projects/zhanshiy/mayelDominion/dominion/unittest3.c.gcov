@@ -1,0 +1,53 @@
+        -:    0:Source:unittest3.c
+        -:    0:Graph:unittest3.gcno
+        -:    0:Data:unittest3.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://unittest.c
+        -:    2://Created by Shiyi Zhang for Assignment 3
+        -:    3://It is to test the function getCost 
+        -:    4:#include "dominion.h"
+        -:    5:#include "dominion_helpers.h"
+        -:    6:#include <stdio.h>
+        -:    7:#include "rngs.h"
+        -:    8:
+        -:    9:
+        1:   10:int main (int argc, char** argv) {
+        -:   11:    //card cost form refer to http://wiki.dominionstrategy.com/index.php/List_of_cards
+        1:   12:    int cardsCost[] = { 0,2,5,8,0,3,6,6,5,4,4,5,4,4,3,4,3,5,3,5,3,4,2,5,4,4,4 };
+        -:   13:    int i;
+        -:   14:    int expectedVal;
+        -:   15:    int testVal;
+        1:   16:    int cardsCount = treasure_map + 1;
+        1:   17:    int tempFlag = 0;
+        -:   18:
+        -:   19:    //Use the above reference to test the function getCost
+        1:   20:    printf("Test suite for function getCost\n");
+       28:   21:    for (i = 0; i < cardsCount; i++) {
+       27:   22:	    testVal = getCost(i);
+       27:   23:	    expectedVal = cardsCost[i];
+       27:   24:	    if (expectedVal != testVal) {
+    #####:   25:	        tempFlag = 1;
+    #####:   26:	        break;
+        -:   27:	    }
+        -:   28:    }
+        -:   29:    //Test Case 1
+        1:   30:    if (tempFlag) {
+    #####:   31:	    printf("Test case 1: FAIL for card index %d. The expected value is %d, but test value is %d\n", i, expectedVal, testVal);
+        -:   32:    } 
+        -:   33:    else {
+        1:   34:	    printf("Test case 1: PASS the test case 1\n");
+        -:   35:    }
+        -:   36:    //Test Case 2
+        1:   37:    i = 77;
+        1:   38:    testVal = getCost(i);
+        1:   39:    expectedVal = -1;
+        1:   40:    if (expectedVal != testVal) {
+    #####:   41:	    printf("Test case 2: FAIL for invalid card index %d. The expected value is %d, but test value is %d\n", i, expectedVal, testVal);
+        -:   42:    } 
+        -:   43:    else {
+        1:   44:	    printf("Test case 2: PASS the test case 2\n");
+        -:   45:    }
+        -:   46:
+        1:   47:    return 0;
+        -:   48:}

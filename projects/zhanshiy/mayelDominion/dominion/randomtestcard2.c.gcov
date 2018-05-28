@@ -1,0 +1,159 @@
+        -:    0:Source:randomtestcard2.c
+        -:    0:Graph:randomtestcard2.gcno
+        -:    0:Data:randomtestcard2.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://randomtestcard2.c
+        -:    2://Created by Shiyi Zhang
+        -:    3://This program is to random test card council room
+        -:    4:
+        -:    5:#include "dominion.h"
+        -:    6:#include "dominion_helpers.h"
+        -:    7:#include <string.h>
+        -:    8:#include <stdio.h>
+        -:    9:#include <assert.h>
+        -:   10:#include "rngs.h"
+        -:   11:#include <stdlib.h>
+        -:   12:#include <math.h>
+        -:   13:#include <time.h>
+        -:   14:
+function main called 1 returned 100% blocks executed 84%
+        1:   15:int main() {
+        -:   16:    //assign variables value
+        1:   17:    int flag = 1;
+        1:   18:    char testCard[] = "council_room";
+        -:   19:    struct gameState testState, tempTestState;
+        1:   20:    int a = 1000;
+        -:   21:    int i, j;
+        -:   22:    int returnVal;
+        1:   23:    int handPos = 0;
+        1:   24:    int choice1 = 0;
+        1:   25:    int choice2 = 0;
+        1:   26:    int choice3 = 0;
+        1:   27:    int bonus = 0;
+        -:   28:    int currentPlayer;
+        1:   29:    int addingCard = 4;
+        1:   30:    int discardCount = 1;
+        1:   31:    int addingBuy = 1;
+        1:   32:    int oppositePlayer = 1;
+        -:   33:    int totalCards, tempTotalCards;
+        -:   34:    int playerHandCount[4], tempPlayerHandCount[4];
+        -:   35:
+        1:   36:    srand(time(NULL));
+call    0 returned 1
+call    1 returned 1
+        1:   37:    printf ("*************RANDOM TESTS FOR CARD %s**************\n", testCard);
+call    0 returned 1
+        -:   38:
+        -:   39:    //get the random numbers for the testState struct
+     1001:   40:    for (i = 0; i < a; i++){
+branch  0 taken 1000
+branch  1 taken 1 (fallthrough)
+  6576000:   41:        for (j = 0; j < sizeof(struct gameState)/ sizeof(int); j++) {
+branch  0 taken 6575000
+branch  1 taken 1000 (fallthrough)
+  6575000:   42:            ((int*)&testState)[j] = rand() % 128;
+call    0 returned 6575000
+        -:   43:        }
+     1000:   44:        testState.numPlayers = (rand() % 3)+2;
+call    0 returned 1000
+     1000:   45:        testState.whoseTurn = rand() % testState.numPlayers;
+call    0 returned 1000
+     1000:   46:        currentPlayer = whoseTurn(&testState);
+call    0 returned 1000
+     1000:   47:        testState.handCount[currentPlayer] = (rand() % (MAX_HAND/2))+1;
+call    0 returned 1000
+     1000:   48:        testState.deckCount[currentPlayer] = (rand() % (MAX_DECK/2))+1;
+call    0 returned 1000
+     1000:   49:        testState.discardCount[currentPlayer] = (rand() % (MAX_DECK/2))+1;
+call    0 returned 1000
+     1000:   50:        handPos = (rand() % testState.handCount[currentPlayer]);
+call    0 returned 1000
+     1000:   51:        testState.numBuys = 0;
+        -:   52:
+        -:   53:        //copy testState struct to tempTestState for testing
+     1000:   54:        memcpy(&tempTestState, &testState, sizeof(struct gameState));
+        -:   55:
+        -:   56:        //test return value
+     1000:   57:        returnVal = cardEffect(council_room, choice1, choice2, choice3, &tempTestState, handPos, &bonus);
+call    0 returned 1000
+     1000:   58:        if (returnVal != 0) {
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1000
+    #####:   59:            printf("Failed on return value.");
+call    0 never executed
+    #####:   60:            flag = 0;
+        -:   61:        };
+        -:   62:
+        -:   63:        //test hand count value
+     1000:   64:        if (tempTestState.handCount[currentPlayer] != testState.handCount[currentPlayer]+addingCard-discardCount){
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1000
+    #####:   65:            flag = 0;
+    #####:   66:            printf("Hand count is %d, and the expected value is %d.\n", tempTestState.handCount[currentPlayer], testState.handCount[currentPlayer]+addingCard);
+call    0 never executed
+        -:   67:        }
+        -:   68:
+        -:   69:        //test deck and discard count value
+     1000:   70:        totalCards = testState.deckCount[currentPlayer] + testState.discardCount[currentPlayer];
+     1000:   71:        tempTotalCards = tempTestState.deckCount[currentPlayer] + tempTestState.discardCount[currentPlayer];
+     1000:   72:        if (tempTotalCards != totalCards - addingCard) {
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1000
+    #####:   73:            flag = 0;
+    #####:   74:            printf("Total Cards are %d, and the expected value is %d.\n", tempTotalCards, totalCards-addingCard);
+call    0 never executed
+        -:   75:        };
+        -:   76:
+        -:   77:        //test buy count value
+     1000:   78:        if (tempTestState.numBuys != testState.numBuys + addingBuy) {
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1000
+    #####:   79:            flag = 0;
+    #####:   80:            printf("Buy Count is %d, and the expected is %d \n\n", tempTestState.numBuys, testState.numBuys+addingBuy);
+call    0 never executed
+        -:   81:        }
+        -:   82:
+     4031:   83:        for (j = 0; j < testState.numPlayers; j++) {
+branch  0 taken 3031
+branch  1 taken 1000 (fallthrough)
+     3031:   84:            if (j != currentPlayer) {
+branch  0 taken 2031 (fallthrough)
+branch  1 taken 1000
+     2031:   85:                tempPlayerHandCount[j] = tempTestState.handCount[j];
+     2031:   86:                playerHandCount[j] = testState.handCount[j];
+        -:   87:            }
+        -:   88:        }
+        -:   89:
+        -:   90:        //test the other players hand count value
+     4031:   91:        for (j = 0; j < testState.numPlayers; j++) {
+branch  0 taken 3031
+branch  1 taken 1000 (fallthrough)
+     3031:   92:            if (j != currentPlayer) {
+branch  0 taken 2031 (fallthrough)
+branch  1 taken 1000
+     2031:   93:                if (tempPlayerHandCount[j] != playerHandCount[j] + oppositePlayer) {
+branch  0 taken 0 (fallthrough)
+branch  1 taken 2031
+    #####:   94:                    flag = 0;
+    #####:   95:					          printf("The other player hand count is %d, and the expected value is %d.\n", tempPlayerHandCount[j],  playerHandCount[j] + oppositePlayer);
+call    0 never executed
+        -:   96:                }
+        -:   97:            }
+        -:   98:        }
+        -:   99:    
+        -:  100:    }
+        -:  101:    //Final bool check to see whether testing passed or not
+        1:  102:    if (flag) {
+branch  0 taken 1 (fallthrough)
+branch  1 taken 0
+        1:  103:        printf("***********TEST SUCCEED************\n");
+call    0 returned 1
+        -:  104:    } 
+        -:  105:    else{
+    #####:  106:        printf("***********TEST FAILED***********\n");
+call    0 never executed
+        -:  107:    }
+        -:  108:
+        1:  109:    return 0;
+        -:  110:};
